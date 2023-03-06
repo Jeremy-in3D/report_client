@@ -18,10 +18,7 @@ const Content = lazy(() =>
 );
 
 export const App: React.FC = () => {
-  const [user, setUser] = useState<User | null>({
-    name: "גרמי",
-    username: "jwes@in3d-tech.com",
-  });
+  const [user, setUser] = useState<User | null>(null);
   const [reports, setReports] = useState([]);
   const [selectedReport, setSelectedReport] = useState();
   const [extra, setExtra] = useState({});
