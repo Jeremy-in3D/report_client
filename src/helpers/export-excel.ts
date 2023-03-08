@@ -1,10 +1,5 @@
 import { utils, WorkSheet, writeFile } from "xlsx";
-import { ReportData } from "../../src/classes/route";
 import { arrayOfRouteNames } from "../components/report/common/reportTypes";
-
-// const id = "R2-2023-02-23T14:58:44+02:00";
-// const name = "משלוחים";
-// const type = "survey";
 
 export async function exportExcel(
   // reportId: string,

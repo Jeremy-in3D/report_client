@@ -51,7 +51,7 @@ export const Report: React.FC<{}> = () => {
       });
 
       if (!appContext.reports?.length) {
-        getCurrentReport(appContext).then((res) => console.log(res));
+        getCurrentReport(appContext).then((res) => console.log("correct"));
       }
     }
   }, []);
@@ -139,7 +139,7 @@ async function createReport(
 ) {
   //Creates new report on the instance using the route
   if (!reportInstance.newReport) {
-    console.log("no report isntance");
+    console.log("no instance found");
     return;
   }
   const newReport = reportInstance?.newReport(route);

@@ -127,3 +127,14 @@ export const getCurrentReport = async (appContext: Context) => {
     console.log("error getting current report", err);
   }
 };
+
+export const sendImage = async (formData: any) => {
+  const response = await fetch(
+    "https://icl-report.herokuapp.com/upload-image",
+    {
+      method: "POST",
+      body: formData,
+    }
+  );
+  return response;
+};

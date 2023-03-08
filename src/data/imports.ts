@@ -31,6 +31,7 @@ const searchIcon = new URL(
 );
 const logo = new URL("../../assets/logo.webp", import.meta.url);
 const symbol = new URL("../../assets/icl-symbol.png", import.meta.url);
+const pageNotFound = new URL("../../assets/icl404.png", import.meta.url);
 
 export {
   logo,
@@ -44,4 +45,5 @@ export {
   createIcon,
   searchIcon,
   lookatAlert,
+  pageNotFound,
 };

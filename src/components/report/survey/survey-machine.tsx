@@ -5,6 +5,7 @@ import { SurveyMachineForm } from "./survey-machine-form";
 import { SurveyMachinePartsList } from "./survey-machine-parts-list";
 import { MachineDetails, MachineFilter } from "../route-view";
 import AppContext, { Context } from "../../../context/context";
+import { sendImage } from "../../../routes/routes";
 
 function getMachineStyle(machineState: MachineFilter) {
   if (machineState === "הושלם") return "completed";
@@ -27,6 +28,7 @@ export const SurveyMachine: React.FC<{
     reportInstance.getMachineComplete(machineName)
   );
   const [partsComplete, setPartsComplete] = useState<boolean[] | undefined>();
+  const [formData, setFormData] = useState<any>();
   const appContext = useContext<Context>(AppContext);
 
   if (
@@ -94,20 +96,13 @@ export const SurveyMachine: React.FC<{
               reportDetails={reportDetails}
               setMachineComplete={setMachineComplete}
               setPartsComplete={setPartsComplete}
+              setFormData={setFormData}
             />
             <button
               className="submit-data-btn"
               onClick={async () => {
                 const answer = confirm("אתה רוצה לסיים את הדוח ולשלוח לשרת?");
                 if (answer) {
-                  console.log(appContext.user);
-                  console.log(
-                    reportInstance.sendMachineData(
-                      machineName,
-                      appContext.selectedReport,
-                      appContext.user
-                    )
-                  );
                   const machineResponse = await fetch(
                     "https://icl-report.herokuapp.com/save-machine",
                     {
@@ -120,6 +115,9 @@ export const SurveyMachine: React.FC<{
                       ),
                     }
                   );
+                  formData
+                    ? await sendImage(formData)
+                    : console.log("no image to upload");
                   if (machineResponse.status === 200) {
                     reportInstance.setMachineComplete(machineName);
                     setMachineComplete(

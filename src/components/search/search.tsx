@@ -56,7 +56,6 @@ export const Search: React.FC = () => {
                     onClick={async () => {
                       appContext.setSelectedReport(item);
                       reportInstance = new Route();
-                      //On click, fetches the routes, once fetched, sets routes data, and screen to report
                       const response = await fetch(
                         "https://icl-report.herokuapp.com/get-routes"
                       );
@@ -80,7 +79,7 @@ export const Search: React.FC = () => {
                     href={deleteIcon.href}
                     onClick={() => {
                       deleteReport(
-                        item.reportId,
+                        item.publishedAt,
                         searchResults,
                         idx,
                         setSearchResults

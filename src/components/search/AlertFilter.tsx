@@ -31,7 +31,7 @@ export const Filter: React.FC<{
   const alertFilterTypes: { [key: number]: string[] } = {
     0: arrayOfRouteNames,
     1: ["משלוחים", "תופים סובבים", "מגדל ניפוי", "מתקן 40", "ספיגה 50"],
-    2: ['דו"ח מערכת שמן'],
+    2: ['דו"ח מערכת שמן', 'דו"ח מערכת שמן'],
     3: ['דו"ח רעידות'],
   };
 
@@ -44,7 +44,6 @@ export const Filter: React.FC<{
           text={item}
           current={idx == selectedFilterOption ? true : false}
           onClick={() => {
-            console.log(alerts);
             setSelectedFilterOption(idx);
             setFilterOption(alertFilterTypes[idx]);
           }}

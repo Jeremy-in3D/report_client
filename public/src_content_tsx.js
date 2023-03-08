@@ -34,7 +34,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _home__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./home */ "./src/home.tsx");
-/* harmony import */ var _classes_route__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./classes/route */ "./src/classes/route.ts");
+/* harmony import */ var _src_classes_route__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../src/classes/route */ "./src/classes/route.ts");
 /* harmony import */ var _context_context__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./context/context */ "./src/context/context.tsx");
 
 
@@ -42,7 +42,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const Content = () => {
-    const reportInstance = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)(new _classes_route__WEBPACK_IMPORTED_MODULE_3__.Route());
+    const reportInstance = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)(new _src_classes_route__WEBPACK_IMPORTED_MODULE_3__.Route());
     const appContext = (0,react__WEBPACK_IMPORTED_MODULE_1__.useContext)(_context_context__WEBPACK_IMPORTED_MODULE_4__["default"]);
     (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
         if (!appContext.reports.length) {
@@ -79,7 +79,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "Home": () => (/* binding */ Home)
 /* harmony export */ });
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-/* harmony import */ var _classes_route__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./classes/route */ "./src/classes/route.ts");
+/* harmony import */ var _src_classes_route__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../src/classes/route */ "./src/classes/route.ts");
 /* harmony import */ var _components_misc_home_selection__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/misc/home-selection */ "./src/components/misc/home-selection.tsx");
 /* harmony import */ var _data_imports__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./data/imports */ "./src/data/imports.ts");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
@@ -105,7 +105,7 @@ const Home = ({ reportInstanceRef, appContext }) => {
             text: 'יצור דו"ח',
             imgPath: _data_imports__WEBPACK_IMPORTED_MODULE_3__.createIcon.href,
             onClick: () => __awaiter(void 0, void 0, void 0, function* () {
-                reportInstanceRef.current = new _classes_route__WEBPACK_IMPORTED_MODULE_1__.Route();
+                reportInstanceRef.current = new _src_classes_route__WEBPACK_IMPORTED_MODULE_1__.Route();
                 const extra = Object.assign({}, appContext.extra);
                 appContext.setExtra(Object.assign(Object.assign({}, extra), { screen: "report" }));
                 navigate("/reports");

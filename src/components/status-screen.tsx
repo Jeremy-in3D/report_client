@@ -146,16 +146,11 @@ export const StatusScreen: React.FC<{}> = () => {
                           }?`
                         );
                         if (answer) {
-                          const payload = {
-                            uniqueId: alert.uniqueId,
-                            completed: !alert.completed,
-                          };
                           const updateResponse = await fetch(
                             "https://icl-report.herokuapp.com/update-alert",
                             {
                               method: "POST",
-                              headers: { "Content-Type": "application/json" },
-                              body: JSON.stringify(payload),
+                              body: alert.reportId,
                             }
                           );
                           if (updateResponse.status === 200) {

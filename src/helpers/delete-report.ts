@@ -1,7 +1,7 @@
 import React from "react";
 
 export async function deleteReport(
-  reportId: string,
+  publishedAt: string,
   results: any,
   idx: number,
   setResults: React.Dispatch<React.SetStateAction<any>>
@@ -14,7 +14,7 @@ export async function deleteReport(
       "https://icl-report.herokuapp.com/delete-report",
       {
         method: "POST",
-        body: reportId,
+        body: publishedAt,
       }
     );
     if (deleteResult.status === 200) {

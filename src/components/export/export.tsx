@@ -77,7 +77,6 @@ export const Export: React.FC = () => {
         return machines;
       });
 
-      console.log(sortedMachines);
       //For each michlol, output the data
       sortedMachines.forEach((michlolMachines) => {
         michlolMachines.forEach((machine: any, idx: number) => {

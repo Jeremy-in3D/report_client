@@ -5,6 +5,7 @@ import { QuestionBank } from "../../../data/question-bank";
 import { ReportDetails } from "./survey-machine";
 import { MachineFilter } from "../route-view";
 import { TakePicture } from "../../misc/blob-handlers";
+import { Input } from "@mui/material";
 
 export const SurveyMachineForm: React.FC<{
   reportInstance: Route;
@@ -13,6 +14,7 @@ export const SurveyMachineForm: React.FC<{
   reportDetails: ReportDetails;
   setMachineComplete: React.Dispatch<React.SetStateAction<MachineFilter>>;
   setPartsComplete: React.Dispatch<React.SetStateAction<boolean[] | undefined>>;
+  setFormData: React.Dispatch<React.SetStateAction<any>>;
 }> = ({
   reportInstance,
   currentQuestion,
@@ -20,6 +22,7 @@ export const SurveyMachineForm: React.FC<{
   reportDetails,
   setMachineComplete,
   setPartsComplete,
+  setFormData,
 }) => {
   //Look into why it re-renders 3 times
   const formRef = useRef<HTMLFormElement>(null);
@@ -90,7 +93,10 @@ export const SurveyMachineForm: React.FC<{
           defaultValue={textAreastring}
         ></textarea>
       </form>
-      <TakePicture reportId={reportInstance?.reportId} />
+      <TakePicture
+        reportId={reportInstance?.reportId}
+        setFormData={setFormData}
+      />
     </>
   );
 };
