@@ -44,7 +44,7 @@ export const Search: React.FC = () => {
             searchResults.map((item: ReportData, idx: number) => (
               <div className="search-item" key={item._id}>
                 <h2>{item.reportId}</h2>
-                <p>נוצר על ידי: {appContext.user.username}</p>
+                <p>נוצר על ידי: {appContext.user?.username}</p>
                 <p>
                   מפורסם ב:{" "}
                   {dayjs(item.publishedAt).format("MM/DD/YYYY HH:mm:ss")}

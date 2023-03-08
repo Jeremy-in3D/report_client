@@ -18,7 +18,6 @@ export async function exportExcel(
 
     if (pullResult.status === 200) {
       const response = await pullResult.json();
-      console.log({ response });
 
       const responseArray = [];
       for (const [key, value] of Object.entries(response)) {
@@ -39,7 +38,7 @@ export async function exportExcel(
         });
         utils.sheet_add_json(worksheet, [{}], {
           header: ["יחידת ציוד:", response[route]?.equipmentUnit],
-          origin: `A${index * 8 + 2}`,
+          origin: `A${index * 12 + 2}`,
         });
         // const cellAddress = utils.encode_cell({ r: index * 8 + 2, c: 0 });
         // // Set the fill color of the cell
@@ -52,7 +51,7 @@ export async function exportExcel(
         // };
         utils.sheet_add_json(worksheet, [{}], {
           header: ["עריכה אחרונה על ידי:", response[route]?.lastEditBy],
-          origin: `A${index * 8 + 3}`,
+          origin: `A${index * 12 + 3}`,
         });
         if (!response[route].data) {
           index = index - 1;
@@ -60,12 +59,34 @@ export async function exportExcel(
         }
         let count = 4;
         for (const [key, value] of Object.entries(response[route].data)) {
-          const stringified = JSON.stringify(response[route].data);
-          utils.sheet_add_json(worksheet, [{}], {
-            header: [`${key}`, stringified],
-            origin: `B${index * 8 + count}`,
-          });
-          count++;
+          // console.log("yes", key, value);
+          for (const [key2, value2] of Object.entries(value as any)) {
+            if (
+              key2 == "excelOutput" ||
+              key2 == "0" ||
+              key2 == "text" ||
+              key2 == "טקסט חופשי" ||
+              Number(key2) > 2
+            ) {
+              continue;
+            }
+            const stringified = JSON.stringify(value)
+              .replace(/[{}]/g, "")
+              .replace(/,/g, ", ");
+            utils.sheet_add_json(worksheet, [{}], {
+              header: [`${key2}:`, stringified],
+              origin: `B${index * 12 + count}`,
+            });
+            count++;
+          }
+          // const stringified = JSON.stringify(response[route].data)
+          //   .replace(/[{}]/g, "")
+          //   .replace(/,/g, ", ");
+          // utils.sheet_add_json(worksheet, [{}], {
+          //   header: [`${key}:`, stringified],
+          //   origin: `C${index * 12 + count}`,
+          // });
+          // count++;
         }
         // utils.sheet_add_json(worksheet, [{}], {
         //   header: ["data", response[route]?.JSON.stringify(data)],
