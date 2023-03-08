@@ -6,7 +6,12 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import dayjs from "dayjs";
 
-export default function BasicModal({ alert, isFromMachines, reportId }: any) {
+export default function BasicModal({
+  alert,
+  isFromMachines,
+  reportId,
+  setError,
+}: any) {
   const [open, setOpen] = useState<boolean>(false);
   const [imgSource, setImgSource] = useState("");
   const imgView3 = useRef<HTMLImageElement>(null);
@@ -25,6 +30,7 @@ export default function BasicModal({ alert, isFromMachines, reportId }: any) {
       const blob = await response.blob();
       const url = window.URL.createObjectURL(blob);
       if (response.status != 200) return;
+      setError(true);
       setImgSource(url);
     }
 
@@ -116,7 +122,15 @@ export default function BasicModal({ alert, isFromMachines, reportId }: any) {
 
   return (
     <div style={{ flex: 1, textAlign: "center" }}>
-      <Button onClick={handleOpen}>
+      <Button
+        style={{
+          textDecoration: "underline",
+          fontFamily: "fantasy",
+          fontSize: 20,
+          color: "black",
+        }}
+        onClick={handleOpen}
+      >
         {isFromMachines ? "תמונת מכונה" : "פרטים"}
       </Button>
       <Modal

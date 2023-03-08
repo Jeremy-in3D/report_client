@@ -5,7 +5,7 @@ import { QuestionBank } from "../../../data/question-bank";
 import { ReportDetails } from "./survey-machine";
 import { MachineFilter } from "../route-view";
 import { TakePicture } from "../../misc/blob-handlers";
-import { Input } from "@mui/material";
+import { ErrorMsg } from "../../../common/ErrorMsg";
 
 export const SurveyMachineForm: React.FC<{
   reportInstance: Route;
@@ -24,6 +24,8 @@ export const SurveyMachineForm: React.FC<{
   setPartsComplete,
   setFormData,
 }) => {
+  const [error, setError] = useState<boolean>(false);
+
   //Look into why it re-renders 3 times
   const formRef = useRef<HTMLFormElement>(null);
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
@@ -96,7 +98,9 @@ export const SurveyMachineForm: React.FC<{
       <TakePicture
         reportId={reportInstance?.reportId}
         setFormData={setFormData}
+        setError={setError}
       />
+      {error && <ErrorMsg />}
     </>
   );
 };

@@ -4,7 +4,8 @@ import BasicModal from "../../common/Modal";
 export const TakePicture: React.FC<{
   reportId: string | undefined | null;
   setFormData: React.Dispatch<React.SetStateAction<any>>;
-}> = ({ reportId, setFormData }) => {
+  setError: React.Dispatch<React.SetStateAction<boolean>>;
+}> = ({ reportId, setFormData, setError }) => {
   const [image, setImage] = useState<any>();
 
   useEffect(() => {
@@ -36,9 +37,10 @@ export const TakePicture: React.FC<{
             capture
             onChange={(e) => {
               setImage(e.target.files);
+              setError(false);
             }}
           />
-          <BasicModal isFromMachines reportId={reportId} />
+          <BasicModal isFromMachines reportId={reportId} setError={setError} />
         </div>
       </form>
     </>

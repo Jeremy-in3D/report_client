@@ -7,7 +7,7 @@ import React, {
   useRef,
 } from "react";
 import { AlertData } from "../../src/classes/route";
-import { checkmarkIcon, lookatAlert, minusIcon } from "../data/imports";
+import { checkmarkIcon, minusIcon } from "../data/imports";
 import { Route } from "../../src/classes/route";
 import BasicModal from "../common/Modal";
 import AppContext, { Context } from "../context/context";

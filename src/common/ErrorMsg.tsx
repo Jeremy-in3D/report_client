@@ -1,4 +1,11 @@
-export function ErrorMsg(message: string) {
+export function ErrorMsg(message: any) {
   const errorMsg = message || "אופס! משהו השתבש";
-  return <div className="generic-error-message">{errorMsg}</div>;
+  return (
+    <h4
+      style={{ color: "red", fontSize: 15 }}
+      className="generic-error-message"
+    >
+      {"אופס! משהו השתבש"}
+    </h4>
+  );
 }
