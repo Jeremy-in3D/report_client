@@ -16,8 +16,6 @@ export default function BasicModal({
   const [imgSource, setImgSource] = useState("");
   const imgView3 = useRef<HTMLImageElement>(null);
 
-  console.count("modal");
-
   const handleOpen = async () => {
     if (isFromMachines) {
       const response = await fetch(
