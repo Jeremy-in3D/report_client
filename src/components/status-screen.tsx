@@ -106,23 +106,6 @@ export const StatusScreen: React.FC<{}> = () => {
                     }}
                   >
                     למכונה
-                    {/* <img
-                    className={"alert-item-view"}
-                    src={lookatAlert.href}
-                    onClick={() => {
-                      handleViewAlert(
-                        reportInstance,
-                        alert.reportId,
-                        false,
-                        appContext.reports,
-                        routes,
-                        appContext.setRoutes,
-                        appContext,
-                        alert.machineName,
-                        navigate
-                      );
-                    }}
-                  ></img> */}
                   </div>
                   <div
                     style={{
