@@ -8,6 +8,7 @@ import { Routes as MachineRoutes } from "./data/reports-data";
 import { TopBar } from "./components/misc/top-bar";
 import { Search } from "./components/search/search";
 import { StatusScreen } from "./components/status-screen";
+import { NotFoundPage } from "./components/misc/NotFoundPage";
 
 // {
 //   name: "גרמי",
@@ -18,10 +19,7 @@ const Content = lazy(() =>
 );
 
 export const App: React.FC = () => {
-  const [user, setUser] = useState<User | null>({
-    name: "ווספילד גרמי",
-    username: "jwes@in3d-tech.com",
-  });
+  const [user, setUser] = useState<User | null>(null);
   const [reports, setReports] = useState([]);
   const [selectedReport, setSelectedReport] = useState();
   const [extra, setExtra] = useState({});
@@ -88,6 +86,7 @@ export const App: React.FC = () => {
                 </Suspense>
               }
             />
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Router>
       </AppContext.Provider>

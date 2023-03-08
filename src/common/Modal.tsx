@@ -75,19 +75,25 @@ export default function BasicModal({ alert, isFromMachines, reportId }: any) {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        border: "2px solid black",
+        border: "1px solid black",
+        height: "100%",
+        flexDirection: "column",
       }}
     >
       {" "}
       <Typography id="modal-modal-title" variant="h6" component="h2">
-        פרטים נוספים:
+        פרטים נוספים:{"\n\n"}
       </Typography>
-      <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-        שם מכונה: <span style={detailsStyle}>{alert?.machineName}</span>
-      </Typography>
-      <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-        שם מחלול: <span style={detailsStyle}>{alert?.michlolName}</span>
-      </Typography>
+      {alert?.machineName && (
+        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+          שם מכונה: <span style={detailsStyle}>{alert.machineName}</span>
+        </Typography>
+      )}
+      {alert?.michlolName && (
+        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+          שם מחלול: <span style={detailsStyle}>{alert.michlolName}</span>
+        </Typography>
+      )}
       <Typography id="modal-modal-description" sx={{ mt: 2 }}>
         נשמר ב:{" "}
         <span style={detailsStyle}>
@@ -97,12 +103,14 @@ export default function BasicModal({ alert, isFromMachines, reportId }: any) {
       <Typography id="modal-modal-description" sx={{ mt: 2 }}>
         נערך על ידי: <span style={detailsStyle}>{alert?.lastEditBy?.name}</span>
       </Typography>
-      <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-        טקסט חופשי:{" "}
-        <span style={detailsStyle}>
-          {alert?.data?.text ? alert.data.text : ""}
-        </span>
-      </Typography>
+      {alert?.data?.text && (
+        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+          טקסט חופשי:{" "}
+          <span style={detailsStyle}>
+            {alert?.data?.text ? alert.data.text : ""}
+          </span>
+        </Typography>
+      )}
     </div>
   );
 
