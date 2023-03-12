@@ -150,12 +150,13 @@ export class Route {
 
   sendMachineData(machineName: string, isFromPublishedReport: any, user: User) {
     const machine = this.data?.[machineName];
-    if (machine)
+    if (machine) {
       return JSON.stringify({
         ...machine,
         completed: true,
         lastEditBy: user,
       });
+    }
   }
 
   getMachineComplete(machineName: string): MachineFilter {
@@ -188,6 +189,7 @@ export type ReportData = {
   _id?: string;
   completedMachines?: number;
   publishedReport?: any[] | undefined;
+  publishedBy?: string | undefined;
 };
 
 export type User = {
@@ -237,4 +239,5 @@ export type AlertData = {
   };
   user?: User;
   lastEditBy?: User;
+  alertSource?: string;
 };

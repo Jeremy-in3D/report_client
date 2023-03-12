@@ -1,12 +1,11 @@
-// import * as React from "react";
-import { useState, useRef } from "react";
+import React, { useState, useRef } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import dayjs from "dayjs";
 
-export default function BasicModal({
+export default React.memo(function BasicModal({
   alert,
   isFromMachines,
   reportId,
@@ -18,23 +17,42 @@ export default function BasicModal({
 
   const handleOpen = async () => {
     if (isFromMachines) {
-      const response = await fetch(
-        "https://icl-report.herokuapp.com/get-image",
-        {
+      try {
+        const response = await fetch("http://localhost:8080/get-image", {
           method: "POST",
           body: reportId,
+        });
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+        setImgSource(url);
+        if (response.status != 200) {
+          setError(true);
+          return;
         }
-      );
-      const blob = await response.blob();
-      const url = window.URL.createObjectURL(blob);
-      if (response.status != 200) return;
-      setError(true);
-      setImgSource(url);
+        setOpen(true);
+      } catch {
+        setError(true);
+      }
+    } else {
+      setOpen(true);
     }
-
-    setOpen(true);
   };
   const handleClose = () => setOpen(false);
+
+  if (!open)
+    return (
+      <Button
+        style={{
+          textDecoration: "underline",
+          fontFamily: "fantasy",
+          fontSize: 20,
+          color: "black",
+        }}
+        onClick={handleOpen}
+      >
+        {isFromMachines ? "תמונת מכונה" : "פרטים"}
+      </Button>
+    );
 
   const style = {
     position: "absolute" as "absolute",
@@ -79,13 +97,19 @@ export default function BasicModal({
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        border: "1px solid black",
         height: "100%",
         flexDirection: "column",
+        boxShadow: "2px 5px 15px -1px rgba(0, 0, 0, 0.73)",
+        borderRadius: "4px",
       }}
     >
       {" "}
-      <Typography id="modal-modal-title" variant="h6" component="h2">
+      <Typography
+        id="modal-modal-title"
+        variant="h6"
+        component="h2"
+        style={{ textDecoration: "underline" }}
+      >
         פרטים נוספים:{"\n\n"}
       </Typography>
       {alert?.machineName && (
@@ -139,13 +163,13 @@ export default function BasicModal({
       >
         <Box sx={style}>
           {isFromMachines ? imageModal : alerts}
-          {!isFromMachines && (
+          {/* {!isFromMachines && (
             <Button style={{ marginTop: 15 }} onClick={handleClose}>
               חזור
             </Button>
-          )}
+          )} */}
         </Box>
       </Modal>
     </div>
   );
-}
+});

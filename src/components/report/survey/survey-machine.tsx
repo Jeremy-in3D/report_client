@@ -116,7 +116,7 @@ export const SurveyMachine: React.FC<{
                     }
                   );
                   formData
-                    ? await sendImage(formData)
+                    ? sendImage(formData)
                     : console.log("no image to upload");
                   if (machineResponse.status === 200) {
                     reportInstance.setMachineComplete(machineName);
