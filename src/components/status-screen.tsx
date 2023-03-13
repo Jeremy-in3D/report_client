@@ -41,6 +41,13 @@ export const StatusScreen: React.FC<{}> = () => {
     getAlerts();
   }, []);
 
+  const engineeringAlerts = ['דו"ח רעידות', 'דו"ח מערכת שמן'];
+
+  const handleEngineeringAlert = (alert: any) => {
+    console.log("heyo");
+    // console.log(alert);
+  };
+
   return (
     <div className="alerts-screen">
       <h2 className="alerts-title">התראות</h2>
@@ -76,8 +83,13 @@ export const StatusScreen: React.FC<{}> = () => {
                     <BasicModal alert={alert} />
                   </div>
 
-                  <div className="alert-item-placement">
-                    {`${alert.michlolName}: ${alert.alertSource}`}
+                  <div
+                    className="alert-item-placement"
+                    onClick={() => handleEngineeringAlert(alert)}
+                  >
+                    {engineeringAlerts.includes(alert.routeName)
+                      ? `${alert.machineName}`
+                      : `${alert.michlolName}: ${alert.alertSource}`}
                   </div>
                   {/* <div
                     style={{
@@ -125,7 +137,7 @@ export const StatusScreen: React.FC<{}> = () => {
                         );
                         if (answer) {
                           const updateResponse = await fetch(
-                            "https://icl-report.herokuapp.com/update-alert",
+                            "http://localhost:8080/update-alert",
                             {
                               method: "POST",
                               body: alert.reportId,

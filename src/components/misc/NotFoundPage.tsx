@@ -99,6 +99,7 @@ export function NotFoundPage() {
                 alignItems: "center",
                 flexDirection: "column",
                 justifyContent: "space-evenly",
+                borderRadius: "4px",
               }}
             >
               <p style={{ textAlign: "center", color: "white" }}>
@@ -116,6 +117,7 @@ export function NotFoundPage() {
                     textAlign: "center",
                     fontSize: 20,
                     fontWeight: "bold",
+                    borderRadius: "4px",
                   }}
                 >
                   Home
@@ -132,6 +134,7 @@ export function NotFoundPage() {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
+                borderRadius: "4px",
               }}
             >
               <p
